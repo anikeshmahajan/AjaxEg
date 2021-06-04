@@ -13,12 +13,34 @@ function makeAjaxCall(methodType, url, callback, async = true, data = null) {
         }
     
     }
-}
-xhr.open(methodType, url, async);
-if (data) {
-    console.log(JSON.stringify(data));
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(data));
-} else xhr.send();
-console.log(methodType + " request sent to the server");
 
+    xhr.open(methodType, url, async);
+    if (data) {
+        console.log(JSON.stringify(data));
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(data));
+    } else xhr.send();
+    console.log(methodType + " request sent to the server");
+}
+
+const getURL = "http://localhost:3000/employee/";
+
+function getUserDetails(data) {
+    console.log("Get User Data " + data);
+}
+makeAJAXCall("GET", getURL, getUserDetails);
+
+const deleteURL = "http://localhost:3000/employee/4";
+
+function userDeleted(data) {
+    console.log("User Deleted " + data);
+}
+makeAJAXCall("DELETE", deleteURL, userDeleted, false);
+
+const postURL = "http://localhost:3000/employee/";
+const emplData = { "name": "Rahul", "salary": "80000" };
+
+function userAdded(data) {
+    console.log("User Added: " + data);
+}
+makeAJAXCall("POST", postURL, userAdded, true, emplData);
