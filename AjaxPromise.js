@@ -4,7 +4,7 @@ function makePromiseCall(methodType, url, async = true, data = null) {
     return new Promise(function(resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-            console.log("State Changed Called Ready State: " + xhr.readyState + " Status: " + xhr.status);
+            console.log("State Changed Callled Ready State: " + xhr.readyState + " Status: " + xhr.status);
             if (xhr.status.toString().match('^[2][0-9]{2}$')) {
                 resolve(xhr.responseText);
             } else if (xhr.status.toString().match('^[4,5][0-9]{2}$')) {
@@ -40,7 +40,7 @@ makePromiseCall("DELETE", deleteURL, false)
     .catch(error => console.log("Delete Error Status: " + JSON.stringify(error)));
 
 const postURL = "http://localhost:3000/employeee";
-const emplData = { "name": "Ashu", "salary": "705000" };
+const emplData = { "name": "Ashutosh", "salary": "70000" };
 
 makePromiseCall("POST", postURL, true, emplData)
     .then(responseText => {
